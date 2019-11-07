@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <% if (recipes) { %>
+    <% for (var recipe of recipes){ %>
+        <p><%= recipe.name %></p>
+        <ul>
+            <% for (var ingredient of recipe.ingredients){ %>
+            <li><%= ingredient.name %> - <%= ingredient.amount %></li>
+            <% } %>
+            <form action="/recipes/<%= recipe.id %>/ingredients" method="POST">
+                <input type="text" name="name">
+                <input type="text" name="amount">
+                <input type="submit" value="Add Ingredient">
+            </form> 
+        </ul>
+    <% } } %>
+    <form action="/recipes" method="POST">
+        <input type="text" name="name" id="name">
+        <input type="text" name="description" id="age">
+        <input type="submit" value="Create">
+    </form>
+</body>
+</html>
